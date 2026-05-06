@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+        *** GENERATED FROM jax-ws.xml - DO NOT EDIT !                             ***
+        *** TO MODIFY wsimport options USE Web Service node -> Edit WS Attributes ***
+        *** TO CHANGE TARGETS GENERATED TO jaxws-build.xml COPY THOSE             ***
+        *** TARGETS TO ../build.xml AND MODIFY THAT FILE INSTEAD                  ***
+
+        --><project xmlns:xalan="http://xml.apache.org/xslt" xmlns:j2seproject3="http://www.netbeans.org/ns/j2se-project/3" xmlns:jaxws="http://www.netbeans.org/ns/jax-ws/1">
+    <!--
+                ===================
+                JAX-WS WSIMPORT SECTION
+                ===================
+            -->
+    <target name="wsimport-init" depends="init">
+        <mkdir dir="${build.generated.sources.dir}/jax-ws"/>
+        <taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
+            <classpath path="${libs.jaxws21.classpath}"/>
+        </taskdef>
+    </target>
+    <target name="wsimport-client-WSConversionUnidades" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/WSConversionUnidades"/>
+        <property name="wsdl-WSConversionUnidades" location="xml-resources/web-service-references/WSConversionUnidades/wsdl/localhost_8080/WS_ConUni_SOAPJAVA_GR08/WSConversionUnidades.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/WSConversionUnidades" destdir="${build.generated.dir}/jax-wsCache/WSConversionUnidades" wsdl="${wsdl-WSConversionUnidades}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/WS_ConUni_SOAPJAVA_GR08/WSConversionUnidades?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${wsdl-WSConversionUnidades}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/WSConversionUnidades"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/WSConversionUnidades">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-WSConversionUnidades" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/WSConversionUnidades"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/ec/edu/monster/ws"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-WSConversionUnidades"/>
+</project>

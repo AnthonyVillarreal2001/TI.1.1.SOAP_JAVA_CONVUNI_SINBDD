@@ -1,0 +1,12 @@
+/03. SERVIDOR/ConversionUnidadesServer/nbproject/private/
+/03. SERVIDOR/ConversionUnidadesServer/build/
+# Ignorar carpetas de compilación en cualquier nivel
+**/target/
+**/build/
+**/dist/
+
+# Ignorar archivos privados de NetBeans
+**/nbproject/private/
+
+# Ignorar archivos temporales
+*.log
