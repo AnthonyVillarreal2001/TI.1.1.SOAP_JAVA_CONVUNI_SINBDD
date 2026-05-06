@@ -13,15 +13,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Conversión de Unidades</title>
-    <!-- Fuente -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- CSS (con bust de caché) -->
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/styles.css?v=5">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/styles.css?v=7">
 </head>
-<body class="main-bg">
+<body class="main-bg" style="--page-bg-image: url('<%= request.getContextPath() %>/images/sullivan.jpg');">
 
 <header class="topbar">
-    <h1>Conversiones de Unidades</h1>
+    <div class="topbar__brand">
+        <span class="eyebrow">Cliente SOAP</span>
+        <h1 class="topbar__title">Conversiones de Unidades</h1>
+        <p class="topbar__copy">Aplicación cliente para conversión de unidades vía SOAP.</p>
+    </div>
     <div class="user-badge">
         <div class="user-info">
             <span>Conectado como</span>
@@ -33,106 +36,83 @@
     </div>
 </header>
 
-<!-- ======= Shell (desktop: 2 columnas / mobile: 1) ======= -->
-<div class="conv-shell">
+<main class="workspace conv-wrapper"
+      data-cat="${param.cat}"
+      data-tipo="${param.tipo}"
+      data-valor="${param.valor}">
 
-    <!-- data-* sirve para rehidratar tras el POST -->
-    <main class="conv-wrapper"
-          data-cat="${param.cat}"
-          data-tipo="${param.tipo}"
-          data-valor="${param.valor}">
+    <section class="hero-panel">
+        <span class="eyebrow">Panel de trabajo</span>
+        <h2>Una sola superficie, más abierta y menos cargada.</h2>
+        <p>Selecciona la categoría, define la operación y escribe el valor. El fondo de pantalla aporta identidad visual sin competir con el formulario.</p>
 
-        <!-- Paso 1 -->
-        <section class="conv-card">
-            <div class="conv-card__header header--blue">
-                <span class="header-icon" aria-hidden="true">i</span>
-                <h2>Categoría de Conversión</h2>
-            </div>
-            <div class="conv-card__body">
-                <div class="input-outline">
-                    <select id="categoria" aria-label="Seleccionar Categoría">
-                        <option value="" selected>Seleccionar Categoría</option>
-                        <option value="longitud">Longitud</option>
-                        <option value="temperatura">Temperatura</option>
-                        <option value="masa">Masa</option>
-                    </select>
-                </div>
-            </div>
-        </section>
+        <div class="feature-row">
+            <span>Longitud</span>
+            <span>Temperatura</span>
+            <span>Masa</span>
+        </div>
+    </section>
 
-        <!-- Paso 2 -->
-        <section class="conv-card">
-            <div class="conv-card__header header--orange">
-                <span class="header-icon" aria-hidden="true">i</span>
-                <h2>Tipo de Conversión</h2>
-            </div>
-            <div class="conv-card__body">
-                <div class="input-outline">
-                    <select id="tipo" aria-label="Seleccionar tipo de conversión" disabled>
-                        <option value="">Primero seleccione una</option>
-                    </select>
-                </div>
-            </div>
-        </section>
-
-        <!-- Paso 3 -->
-        <form id="form-conversion" class="conv-card"
+    <section class="converter-stage">
+        <form id="form-conversion" class="converter-form"
               action="<%= request.getContextPath() %>/convertir" method="post" novalidate>
 
-            <div class="conv-card__header header--green">
-                <span class="header-icon" aria-hidden="true">i</span>
-                <h2>Ingrese el Valor</h2>
-            </div>
+            <input type="hidden" name="tipo" id="tipo-hidden">
+            <input type="hidden" name="cat" id="cat-hidden">
 
-            <div class="conv-card__body">
-                <!-- Hidden para enviar lo seleccionado -->
-                <input type="hidden" name="tipo" id="tipo-hidden">
-                <input type="hidden" name="cat" id="cat-hidden">
-
-                <div class="input-outline">
-                    <input type="number" inputmode="decimal" id="valor" name="valor"
-                           placeholder="Ingrese el valor numérico" required>
-                </div>
-
-                <button type="submit" class="btn-primary btn-block">CONVERTIR</button>
-
-                <!-- Resultado para móviles -->
-                <c:if test="${not empty param.resultado}">
-                    <div class="result-chip only-mobile">
-                        <strong>${param.resultado}</strong>
-                        <small>Valor inicial: ${param.valor} · Operación: ${param.tipo}</small>
+            <div class="field-grid">
+                <label class="field">
+                    <span>Categoría de conversión</span>
+                    <div class="field-shell">
+                        <select id="categoria" aria-label="Seleccionar Categoría">
+                            <option value="" selected>Seleccionar Categoría</option>
+                            <option value="longitud">Longitud</option>
+                            <option value="temperatura">Temperatura</option>
+                            <option value="masa">Masa</option>
+                        </select>
                     </div>
-                </c:if>
-                <c:if test="${not empty param.error}">
-                    <p class="alert only-mobile">${param.error}</p>
-                </c:if>
+                </label>
+
+                <label class="field">
+                    <span>Tipo de conversión</span>
+                    <div class="field-shell">
+                        <select id="tipo" aria-label="Seleccionar tipo de conversión" disabled>
+                            <option value="">Primero seleccione una</option>
+                        </select>
+                    </div>
+                </label>
+
+                <label class="field field-full">
+                    <span>Valor</span>
+                    <div class="field-shell">
+                        <input type="number" inputmode="decimal" id="valor" name="valor"
+                               placeholder="Ingrese el valor numérico" required>
+                    </div>
+                </label>
             </div>
+
+            <div class="action-row">
+                <button type="submit" class="btn-primary">CONVERTIR</button>
+                <button type="button" class="btn-ghost" id="btn-limpiar">LIMPIAR</button>
+            </div>
+
+            <section class="result-strip">
+                <c:choose>
+                    <c:when test="${not empty param.resultado}">
+                        <p class="result-value">${param.resultado}</p>
+                        <p class="result-meta">Valor inicial: <b>${param.valor}</b> · Operación: <b>${param.tipo}</b></p>
+                    </c:when>
+                    <c:when test="${not empty param.error}">
+                        <p class="result-error">${param.error}</p>
+                    </c:when>
+                    <c:otherwise>
+                        <p class="status-hint">Completa el formulario para ver el resultado aquí.</p>
+                    </c:otherwise>
+                </c:choose>
+            </section>
         </form>
-    </main>
-
-    <!-- Panel de resultado (solo desktop) -->
-    <aside class="result-panel only-desktop">
-        <h3>Resultado</h3>
-        <c:choose>
-            <c:when test="${not empty param.resultado}">
-                <p class="result-big">${param.resultado}</p>
-                <p class="muted">Valor inicial: <b>${param.valor}</b></p>
-                <p class="muted">Operación: <b>${param.tipo}</b></p>
-            </c:when>
-            <c:when test="${not empty param.error}">
-                <p class="alert">${param.error}</p>
-            </c:when>
-            <c:otherwise>
-                <p class="muted">Ingresa un valor y presiona <b>Convertir</b>.</p>
-            </c:otherwise>
-        </c:choose>
-    </aside>
-</div>
-
-<!-- FAB limpiar -->
-<button type="button" class="fab danger" id="btn-limpiar" title="Limpiar">
-    <span class="trash" aria-hidden="true">🗑️</span>
-</button>
+    </section>
+</main>
 
 <script>
     // Opciones por categoría
@@ -159,6 +139,7 @@
     const valor = document.getElementById('valor');
     const form = document.getElementById('form-conversion');
     const btnLimpiar = document.getElementById('btn-limpiar');
+    const resultStrip = document.querySelector('.result-strip');
 
     // Listeners
     categoria.addEventListener('change', () => {
@@ -206,6 +187,7 @@
     btnLimpiar.addEventListener('click', () => {
         categoria.value=''; tipo.innerHTML='<option value="">Primero seleccione una</option>';
         tipo.disabled=true; valor.value=''; tipoHidden.value=''; catHidden.value='';
+        resultStrip.innerHTML = '<p class="status-hint">Completa el formulario para ver el resultado aquí.</p>';
         toast("Formulario reiniciado.");
     });
 

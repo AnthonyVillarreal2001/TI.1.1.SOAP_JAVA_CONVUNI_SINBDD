@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Colores Principales -->
-    <color name="primary">#2196F3</color>
-    <color name="primary_dark">#1976D2</color>
-    <color name="primary_light">#BBDEFB</color>
-    <color name="accent">#FF5722</color>
+    <color name="primary">#6C63FF</color>
+    <color name="primary_dark">#4F46E5</color>
+    <color name="primary_light">#A5B4FC</color>
+    <color name="accent">#F59E0B</color>
     
     <!-- Color Morado -->
-    <color name="purple">#9C27B0</color>
-    <color name="purple_light">#B762F0</color>
+    <color name="purple">#7C3AED</color>
+    <color name="purple_light">#A78BFA</color>
     
     <!-- Colores por Categoría -->
     <color name="longitud">#4CAF50</color>
@@ -19,11 +19,11 @@
     <color name="masa_light">#BA68C8</color>
     
     <!-- Colores Base -->
-    <color name="background">#F5F5F5</color>
-    <color name="card_background">#FFFFFF</color>
-    <color name="text_primary">#212121</color>
-    <color name="text_secondary">#757575</color>
-    <color name="divider">#BDBDBD</color>
+    <color name="background">#08111F</color>
+    <color name="card_background">#B8081220</color>
+    <color name="text_primary">#F8FAFC</color>
+    <color name="text_secondary">#CBD5E1</color>
+    <color name="divider">#33FFFFFF</color>
     
     <!-- Colores de Estado -->
     <color name="success">#4CAF50</color>

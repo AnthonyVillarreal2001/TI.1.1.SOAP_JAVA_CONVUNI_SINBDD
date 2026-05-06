@@ -18,6 +18,13 @@ public class SoftComboBox<E> extends JComboBox<E> {
                 JLabel l = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
                 l.setBorder(new EmptyBorder(6, 12, 6, 10));
                 l.setFont(l.getFont().deriveFont(Font.PLAIN, 13f));
+                if (isSelected) {
+                    l.setBackground(new Color(55, 65, 81));
+                    l.setForeground(new Color(248, 250, 252));
+                } else {
+                    l.setBackground(new Color(17, 24, 39));
+                    l.setForeground(new Color(226, 232, 240));
+                }
                 return l;
             }
         });
@@ -28,7 +35,7 @@ public class SoftComboBox<E> extends JComboBox<E> {
                 b.setBorder(null);
                 b.setFocusable(false);
                 b.setContentAreaFilled(false);
-                b.setForeground(new Color(120,120,140));
+                b.setForeground(new Color(226, 232, 240));
                 b.setFont(b.getFont().deriveFont(Font.BOLD, 12f));
                 return b;
             }
@@ -45,13 +52,13 @@ public class SoftComboBox<E> extends JComboBox<E> {
 
         // fondo rounded translúcido
         g2.setPaint(new GradientPaint(0, 0,
-                new Color(255, 255, 255, 220),
+            new Color(2, 8, 18, 176),
                 0, h,
-                new Color(255, 255, 255, 180)));
+            new Color(2, 8, 18, 208)));
         g2.fillRoundRect(0, 0, w - 1, h - 1, 14, 14);
 
         // borde suave
-        g2.setColor(new Color(0, 0, 0, 35));
+        g2.setColor(new Color(255, 255, 255, 45));
         g2.drawRoundRect(0, 0, w - 1, h - 1, 14, 14);
 
         g2.dispose();

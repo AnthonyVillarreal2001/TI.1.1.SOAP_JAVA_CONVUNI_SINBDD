@@ -4,7 +4,7 @@
     <!-- Fondo morado -->
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="#C8A2E0"/>
+            <solid android:color="#B8081220"/>
         </shape>
     </item>
 
