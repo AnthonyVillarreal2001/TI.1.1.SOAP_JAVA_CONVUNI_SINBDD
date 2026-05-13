@@ -7,5 +7,5 @@ public class Constants {
     // Para dispositivo físico usar la IP de tu PC donde corre el servidor
     // Ejemplo: "http://192.168.100.5:8080/WS_ConUni_SOAPJAVA_GR04/WSConversionUnidades"
     // Para encontrar tu IP en Windows: ipconfig en CMD y busca "Dirección IPv4"
-    public static final String URL = "http://10.40.25.115:8080/WS_ConUni_SOAPJAVA_GR08/WSConversionUnidades";
+    public static final String URL = "http://192.168.100.112:8080/WS_ConUni_SOAPJAVA_GR08/WSConversionUnidades";
 }

@@ -6,10 +6,6 @@ package ec.edu.monster.prueba;
 
 import ec.edu.monster.servicio.ConversionUnidadesServicio;
 
-/**
- *
- * @author danie
- */
 public class PruebaConversionUnidades {
     private static final float EPS = 1e-3f;
 
